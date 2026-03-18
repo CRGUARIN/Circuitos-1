@@ -1,0 +1,173 @@
+\documentclass[12pt, a4paper]{article} 
+\usepackage[siunitx]{circuitikz}
+\usepackage[utf8]{inputenc} 
+\usepackage[spanish]{babel} 
+    \usepackage{amsmath} 
+    \usepackage{geometry} 
+\geometry{margin=2.5cm}
+
+\title{\textbf{Preinforme}}
+\author{Maria José Álvarez Hernández, Cristian Alejandro Guarin Marin}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Consulta}
+Como grupo comprendimos que las transformaciones delta-estrella y 
+estrella-delta son técnicas de simplificación de circuitos. Las utilizamos 
+cuando nos encontramos con redes de resistencias que no están conectadas en 
+configuraciones de serie ni paralelo.
+
+En esencia estas transformaciones nos permiten reemplazar un arreglo de
+tres resistencias en forma de Y por un arreglo equivalente con un nodo
+central común, o viceversa. El objetivo de hacer este reemplazo es destrabar el circuito, logrando que las resistencias restantes queden claramente en serie 
+o en paralelo, cosa que nos permitirá encontrar la $R_{eq}$. Cabe destacar
+que al hacer estas transformaciones el voltaje y la corriente en los terminales
+externos del circuito se mantienen exactamente iguales.
+
+\subsection{Transformaciones delta-estrella}
+La regla general es que la resistencia de la estrella en un nodo dado es
+igual al producto de las dos resistencias adyacentes de la delta, dividido 
+por la suma de las tres resistencias de la delta.
+
+\vspace{0.5cm}
+$$R_A = \frac{R_{AB}R_{CA}}{R_{AB}+R_{BC}+R_{CA}}$$
+\vspace{0.5cm}
+$$R_B = \frac{R_{AB}R_{BC}}{R_{AB}+R_{BC}+R_{CA}}$$
+\vspace{0.5cm}
+$$R_C = \frac{R_{CA}R_{BC}}{R_{AB}+R_{BC}+R_{CA}}$$
+
+\vspace{0.5cm}
+
+\subsection{Transformaciones estrella-delta}
+La regla general es que la resistencia de la delta conectada entre dos nodos
+es igual a la suma de todos los productos cruzados posibles de las resistencias
+de la estrella, dividida por la resistencia de la estrella conectada al nodo 
+opuesto.
+
+\vspace{0.5cm}
+$$R_{AB} = \frac{R_AR_B+R_BR_C+R_CR_A}{R_C}$$
+\vspace{0.5cm}
+$$R_{BC} = \frac{R_AR_B+R_BR_C+R_CR_A}{R_A}$$
+\vspace{0.5cm}
+$$R_{CA} = \frac{R_AR_B+R_BR_C+R_CR_A}{R_B}$$
+
+\section{Cálculos}
+
+%Circuito 1------------------------------------------------------
+\subsection{Circuito 1}
+
+\vspace{0.8cm}
+
+\begin{center}
+\begin{circuitikz}
+    %Fuente de voltaje en el extremo izquierdo
+    \draw (0,0) to[battery1, invert, l=$\text{8V}$] (0,4);
+    
+    %Rieles superior e inferior
+    \draw (0,4) to[short, i=$I$] (9,4);
+    \draw (0,0) to[short] (9,0);
+
+    %Primera resistencia bajando en x=3
+    \draw (3,4) to[R, i=$I_A$, l=$1.5k\varOmega$] (3,0);
+
+    %Segunda resistencia bajando en x=6
+    \draw (6,4) to[R, i=$I_B$, l=$2.2k\varOmega$] (6,0);
+
+    %Tercera resistencia bajando en x=9
+    \draw (9,4) to[R, i=$I_C$, l=$3.3k\varOmega$] (9,0);
+\end{circuitikz}
+\end{center}
+
+\vspace{0.8cm}
+
+%Tabla
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{$R_{eq1}$} & \textbf{$I_A$} & \textbf{$I_B$} & \textbf{$I_C$} \\
+\hline
+$702.12\varOmega$ & $5.3mA$ & $3.6mA$ & $2.4mA$ \\
+\hline
+\end{tabular}
+\label{tab:tabla_2x4}
+\end{table}
+
+%Circuito 2 -------------------------------------------------------------
+\subsection{Circuito 2}
+
+\vspace{0.8cm}
+
+\begin{center}
+\begin{circuitikz}
+    %Fuente de voltaje en el extremo izquierdo
+    \draw (0,0) to[battery1, invert, l=$8V$] (0,4);
+
+    %Resistencia superior
+    \draw (0,4) to[R, i=2mA, l=$R_a1k\varOmega$] (4,4);
+
+    %Resistencia derecha
+    \draw (4,4) to[R, l=$R_b2k\varOmega$] (4,0);
+
+    %Resistencia inferior
+    \draw (4,0) to[R, l=$R_c1k\varOmega$] (0,0);
+\end{circuitikz}
+\end{center}
+
+%Tabla
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline 
+        $\mathbf{R_{eq2}}$ & $\mathbf{i}$ & $\mathbf{V_{R_a}}$ & $\mathbf{V_{R_b}}$ & $\mathbf{V_{R_c}}$ \\
+        \hline
+        $4k\varOmega$ & $2mA$ & $2V$ & $4V$ & $2V$ \\
+        \hline
+    \end{tabular}
+\end{table}
+
+%Circuito 3----------------------------------------------------------------------------------------------------
+\subsection{Circuito 3}
+
+\vspace{0.8cm}
+
+\begin{center}
+\begin{circuitikz}
+    %Fuente alienada a la izquierda
+    \draw (0,0) to[battery1, invert, l=$8V$] (0,10);
+
+    %Rieles superior e inferior
+    \draw (0,10) to[short, i=$i$] (10,10);
+    \draw (0,0) to[short] (10,0);
+
+    %Primer paralelo
+    \draw (2,10) to[R, l=$R_a$] (2,5);
+    \draw (2,5) to[R, l=$R_d$] (2,0);
+
+    %Horizontal
+    \draw (2,5) to[R, l=$R_c = 1k\Omega$] (10,5);
+
+    %Segundo paralelo
+    \draw (10,10) to[R, l=$R_b = 1k\Omega$] (10,5);
+    \draw (10,5) to[R, l=$R_e = 1k\Omega$] (10,0);
+\end{circuitikz}
+\end{center}
+
+%Tabla
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+        \hline
+        $\mathbf{R_{eq3}}$ & $\mathbf{R_a}$ & $\mathbf{R_b}$ & $\mathbf{R_c}$ & $\mathbf{R_d}$ & $\mathbf{R_e}$ & $\mathbf{I}$\\
+        \hline
+        $1k\varOmega$ & $1k\varOmega$ & $1k\varOmega$ & $1k\varOmega$ & $1k\varOmega$ & $1k\varOmega$ & $9mA$ \\
+        \hline
+
+        
+    \end{tabular}
+\end{table}
+
+\end{document}
