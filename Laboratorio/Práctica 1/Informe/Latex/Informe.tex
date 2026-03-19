@@ -13,6 +13,80 @@
 \begin{document}
 \maketitle
 
-\section{Circuito 3}
+%Aclaración importante ---------------------------------------------------------------------------------------------------------------
+\textbf{Aclaración importante:} Para el desarrollo del informe y del montaje se utilizaron valores distintos para las resistencias
+a los del preinforme, esto debido a que se quería evitar que el circuito quedara demasiado simple o muy redundante, cosa 
+que haría que el proceso de cálculo fuera muy sencillo y no pudieramos analizar y observar los fenómenos con "todas las de la ley".
 
+%Tabla resistencias-------------------------------------------------------------------------------------------------------------------
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Resistencias} & \textbf{Valor estimado} & \textbf{Valor medido}  \\
+\hline
+$R_a$ & $1500\varOmega$ & $1482\varOmega$ \\
+\hline 
+$R_b$ & $2200\varOmega$ & $2212\varOmega$ \\
+\hline 
+$R_c$ & $3300\varOmega$ & $3194\varOmega$ \\
+\hline
+$R_d$ & $1000\varOmega$ & $989\varOmega$ \\
+\hline
+$R_e$ & $2000\varOmega$ & $1948\varOmega$ \\
+\hline
+\end{tabular}
+\label{tab:tabla_2x4}
+\end{table}
+
+\subsection{Circuito 3}
+
+%Esquemático circuito 3------------------------------------------------------------------------------------------------------------------- 
+\begin{center}
+
+    \begin{circuitikz}
+    
+        %Fuente alienada a la izquierda
+    \draw (0,0) to[battery1, invert, l=$8V$] (0,7);
+
+    %Rieles superior
+    \draw (0,7) to[short, i=$i$] (2,7);
+    \draw (2,7) to[short] (7,7);
+    
+    %Riel inferior
+    \draw (0,0) to[short] (7,0);
+
+    %Primer paralelo
+    \draw (2,7) to[R, l=$R_a$] (2,3.5);
+    \draw (2,3.5) to[R, l=$R_d$] (2,0);
+
+    %Horizontal
+    \draw (2,3.5) to[R, l=$R_c$] (7,3.5);
+
+    %Segundo paralelo
+    \draw (7,7) to[R, l=$R_b$] (7,3.5);
+    \draw (7,3.5) to[R, l=$R_e$] (7,0);
+
+    \end{circuitikz}
+
+\end{center}
+
+%Tabla circuito 3------------------------------------------------------------------------------------------------------------------------
+\begin{table}[h]
+
+    \centering
+
+\begin{tabular}{|c|c|c|c|}
+    
+    \hline
+     & \textbf{Cálculos} & \textbf{Simulación} & \textbf{Montaje} \\
+    \hline
+    $\mathbf{R_{eq}}$ &  &  & $1549\varOmega$\\
+    \hline
+    $\mathbf{I}$ &  & $5.11mA$ & $5.15mA$\\
+    \hline
+
+\end{tabular}
+
+\end{table}
 \end{document}
