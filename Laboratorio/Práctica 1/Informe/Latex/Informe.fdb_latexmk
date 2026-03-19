@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1773849183.15187 "/home/crguarin/Documentos/2026-1/Circuitos Eléctricos 1/Laboratorio/Práctica 1/Informe/Latex/Informe.tex" "Informe.pdf" "Informe" 1773849185.11494 0
+["pdflatex"] 1773851970.85988 "/home/crguarin/Documentos/2026-1/Circuitos Eléctricos 1/Laboratorio/Práctica 1/Informe/Latex/Informe.tex" "Informe.pdf" "Informe" 1773851972.82957 0
   "/etc/texmf/web2c/texmf.cnf" 1773540158.25739 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/crguarin/Documentos/2026-1/Circuitos Eléctricos 1/Laboratorio/Práctica 1/Informe/Latex/Informe.tex" 1773849182.8015 422 ef3257479c5f551b456a65eaf6d04a79 ""
+  "/home/crguarin/Documentos/2026-1/Circuitos Eléctricos 1/Laboratorio/Práctica 1/Informe/Latex/Informe.tex" 1773851968.52263 388 f852f448de9d6d1f05bc1af1b1dfb4ee ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1136768653 1324 c910af8c371558dc20f2d7822f66fe64 ""
@@ -140,8 +140,8 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1773546758.26467 5472669 54eaf61a88b6b7896ebd0dac973cb29c ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1773546776 8214626 117510a33ab391a83a9350d1dfd8807a ""
-  "Informe.aux" 1773849184.98303 292 5abeeb7be6bd1e90f9415fe4bc18aff5 "pdflatex"
-  "Informe.tex" 1773849182.8015 422 ef3257479c5f551b456a65eaf6d04a79 ""
+  "Informe.aux" 1773851972.69712 292 8d9404e3a4bd99457af8cb6f98e62e95 "pdflatex"
+  "Informe.tex" 1773851968.52263 388 f852f448de9d6d1f05bc1af1b1dfb4ee ""
   (generated)
   "Informe.aux"
   "Informe.log"
