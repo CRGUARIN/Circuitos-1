@@ -1,37 +1,83 @@
-\documentclass[12pt, a4paper]{article} 
-\usepackage[siunitx]{circuitikz}
-\usepackage[utf8]{inputenc} 
-\usepackage[spanish]{babel} 
-    \usepackage{amsmath} 
-    \usepackage{geometry} 
-\geometry{margin=2.5cm}
+\documentclass[journal]{IEEEtran}
 
-\title{\textbf{Informe}}
-\author{Maria José Álvarez Hernández, Cristian Alejandro Guarin Marin}
-\date{\today}
+% --- PAQUETES BÁSICOS ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage[siunitx]{circuitikz} 
+
+%Traducciónes específicas
+\renewcommand{\abstractname}{Resumen}
+\renewcommand{\tablename}{Tabla}
+\renewcommand{\figurename}{Figura}
+\renewcommand{\IEEEkeywordsname}{Palabras Clave}
 
 \begin{document}
+
+%Título y autores
+\title{Informe 1: Circuitos Resistivos}
+\author{Maria José Álvarez Hernández, \textit{123456789}, \textit{Universidad de Antioquia}, 
+        y Cristian Alejandro Guarin Marin, \textit{1041228448}, \textit{Universidad de Antioquia}}
+
 \maketitle
 
-\begin{center}
+%Resumen
+\begin{abstract}
+En este documento se detalla la comprobación práctica de la ley de Ohm, las leyes de Kirchhoff y las técnicas de simplificación de circuitos resistivos. 
+Se analizaron tres configuraciones principales: paralela, serie y mixta (requiriendo transformación delta-estrella). La metodología consistió en contrastar 
+los valores teóricos calculados en el preinforme, los resultados obtenidos mediante simulación en LtSpice y las mediciones físicas tomadas en el laboratorio. 
+A través de esta comparación, se evaluó la precisión de los métodos teóricos y se analizó el impacto de las tolerancias de los componentes reales.
+\end{abstract}
+
+%Palabras clave
+\begin{IEEEkeywords}
+Ley de Kirchhoff, Ley de Ohm, Multímetro, Protoboard, Circuitos Resistivos.
+\end{IEEEkeywords}
+
+%Introducción
+\section{Introducción}
+
+
+%Metodología ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\section{Metodología}
+Para el desarrollo experimental se empleó una placa de pruebas (protoboard), resistores de diferentes valores comerciales, un multímetro digital y una 
+fuente de alimentación de corriente continua configurada a $8V$. 
+
+El procedimiento se dividió en las siguientes fases:
+\begin{itemize}
     
-    \textbf{Repositorio:} https://github.com/CRGUARIN/Circuitos-1
+    \item \textbf{Selección y medición de componentes:} Inicialmente, se midió el valor real de resistencia de cada componente con el multímetro y se comparó 
+    con el valor teórico dictado por su código de colores. \textit{Cabe aclarar que, para el desarrollo de este montaje físico, se decidió utilizar valores de 
+    resistencia distintos a los propuestos inicialmente en el preinforme. Esto se hizo con el propósito de evitar que el circuito resultara demasiado simple o 
+    redundante, garantizando así un escenario de medición que permitiera observar y analizar los fenómenos eléctricos de manera más rigurosa.}
+    
+    \item \textbf{Circuito en paralelo (Figura 1):} Se realizó el montaje de resistores en paralelo. Con la fuente desconectada, se midió la resistencia 
+    equivalente del sistema. Posteriormente, se activó la fuente y se midieron tanto la corriente total suministrada como las corrientes de rama individuales.
+    
+    \item \textbf{Circuito en serie (Figura 2):} Se implementó una configuración en serie, midiendo la resistencia equivalente total y las caídas de tensión (voltaje) en 
+    cada uno de los resistores que componen el circuito.
+    
+    \item \textbf{Circuito mixto (Figura 3):} Se armó una topología que requiere una transformación delta-estrella para su simplificación teórica. 
+    En este montaje se midió experimentalmente la resistencia equivalente vista desde la fuente y la corriente total suministrada por la misma.
 
-    \vspace{0.5cm}
+\end{itemize}
+En todos los casos, los circuitos fueron previamente simulados y resueltos de forma manual para obtener los puntos de operación teóricos.
 
-    %Aclaración importante ---------------------------------------------------------------------------------------------------------------
-    \textbf{Aclaración importante:} Para el desarrollo del informe y del montaje se utilizaron valores distintos para las resistencias
-    a los del preinforme, esto debido a que se quería evitar que el circuito quedara demasiado simple o muy redundante, cosa 
-    que haría que el proceso de cálculo fuera muy sencillo y no pudieramos analizar y observar los fenómenos con "todas las de la ley".
+%Resultados ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\section{Resultados}
+A continuación se presentan los datos recolectados durante la práctica. En la Tabla \ref{tab:resistencias} se detallan los valores nominales y medidos de los 
+resistores utilizados. Posteriormente, se exponen las mediciones de corriente, voltaje y resistencia equivalente para cada una de las configuraciones, contrastando los 
+datos del preinforme, la simulación y el montaje físico.
 
-\end{center}
-
-%Tabla resistencias-------------------------------------------------------------------------------------------------------------------
-\begin{table}[h]
+%Tabla de resistencias ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\begin{table}[htbp]
 \centering
+\caption{Valores de las Resistencias}
+\label{tab:resistencias}
 \begin{tabular}{|c|c|c|}
 \hline
-\textbf{Resistencias} & \textbf{Valor estimado} & \textbf{Valor medido}  \\
+\textbf{Resistencia} & \textbf{Valor estimado} & \textbf{Valor medido}  \\
 \hline
 $R_a$ & $1500\varOmega$ & $1482\varOmega$ \\
 \hline 
@@ -44,57 +90,70 @@ $R_d$ & $1000\varOmega$ & $989\varOmega$ \\
 $R_e$ & $2000\varOmega$ & $1948\varOmega$ \\
 \hline
 \end{tabular}
-\label{tab:tabla_2x4}
 \end{table}
 
 \subsection{Circuito 3}
 
-%Esquemático circuito 3------------------------------------------------------------------------------------------------------------------- 
-\begin{center}
-
-    \begin{circuitikz}
-    
-        %Fuente alienada a la izquierda
-    \draw (0,0) to[battery1, invert, l=$8V$] (0,7);
-
-    %Rieles superior
-    \draw (0,7) to[short, i=$i$] (2,7);
-    \draw (2,7) to[short] (7,7);
-    
-    %Riel inferior
-    \draw (0,0) to[short] (7,0);
-
-    %Primer paralelo
-    \draw (2,7) to[R, l=$R_a$] (2,3.5);
-    \draw (2,3.5) to[R, l=$R_d$] (2,0);
-
-    %Horizontal
-    \draw (2,3.5) to[R, l=$R_c$] (7,3.5);
-
-    %Segundo paralelo
-    \draw (7,7) to[R, l=$R_b$] (7,3.5);
-    \draw (7,3.5) to[R, l=$R_e$] (7,0);
-
-    \end{circuitikz}
-
-\end{center}
-
-%Tabla circuito 3------------------------------------------------------------------------------------------------------------------------
-\begin{table}[h]
-
+%Circuito 3 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+\begin{figure}[htbp]
     \centering
+    \begin{circuitikz}
+        
+        %Fuente alineada a la izquierda
+        \draw (0,0) to[battery1, invert, l=$V_s$] (0,7);
+        
+        %Riel superior
+        \draw (0,7) to[short, i=$i$] (2,7);
+        \draw (2,7) to[short] (7,7);
+        
+        %Riel inferior
+        \draw (0,0) to[short] (7,0);
 
-\begin{tabular}{|c|c|c|c|}
+        %Primer paralelo
+        \draw (2,7) to[R, l=$R_a$] (2,3.5);
+        \draw (2,3.5) to[R, l=$R_d$] (2,0);
+
+        %Horizontal
+        \draw (2,3.5) to[R, l=$R_c$] (7,3.5);
+        %Segundo paralelo
+        \draw (7,7) to[R, l=$R_b$] (7,3.5);
+        \draw (7,3.5) to[R, l=$R_e$] (7,0);
     
-    \hline
-     & \textbf{Cálculos} & \textbf{Simulación} & \textbf{Montaje} \\
-    \hline
-    $\mathbf{R_{eq}}$ &  &  & $1549\varOmega$\\
-    \hline
-    $\mathbf{I}$ &  & $5.11mA$ & $5.15mA$\\
-    \hline
+    \end{circuitikz}
+    
+    \caption{Esquemático del Circuito 3.}
+    \label{fig:circuito3}
+\end{figure}
 
-\end{tabular}
+%Tabla
+\begin{table}[htbp]
+
+\centering
+\caption{Resultados del Circuito 3}
+    
+        \begin{tabular}{|c|c|c|c|}
+            
+            \hline
+            & \textbf{Cálculos} & \textbf{Simulación} & \textbf{Montaje} \\
+            \hline
+            $\mathbf{R_{eq}}$ &  &  & $1549\varOmega$\\
+            \hline
+            $\mathbf{I}$ &  & $5.11mA$ & $5.15mA$\\
+            \hline
+
+    \end{tabular}
 
 \end{table}
+
+%Análisis de resultados------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\section{Análisis de Resultados}
+
+%Conclusiones-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\section{Conclusiones}
+A partir del desarrollo de la práctica, se logró comprobar de manera experimental la validez de la ley de Ohm y las leyes de Kirchhoff. 
+Se verificó que, en los circuitos en paralelo, la corriente total se divide entre las distintas ramas, mientras que en los circuitos en serie, el 
+voltaje total se reparte entre los resistores. 
+
+Asimismo, se demostró que las técnicas de simplificación matemática, como la transformación delta-estrella, son herramientas precisas para predecir el comportamiento físico de un circuito. A pesar de los pequeños porcentajes de error inherentes a los componentes físicos, los modelos teóricos y simulados representan fielmente la dinámica del montaje real.
+
 \end{document}
